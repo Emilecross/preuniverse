@@ -1,20 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './components/Home';
+import Auth from './components/Auth';
+import { Flex, Image, NativeBaseProvider, Text } from 'native-base';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+const LogoTitle = (props) => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Flex flexDirection='row'>
+      <Image
+        style={{ width: 50, height: 50 }}
+        source={require('./assets/Cello_Logo.png')}
+        alt='cello-logo'
+      />
+      <Text>{props.name}</Text>
+    </Flex>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <NativeBaseProvider>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{headerShown: false}}>
+            <Stack.Screen 
+              name='Auth'
+              component={Auth}
+              options={{ title: 'Auth' }}/>
+            <Stack.Screen 
+              name='Home'
+              component={Home}
+              options={{ title: 'Home' , headerTitle: <LogoTitle title={'Home'} /> }}/>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </NativeBaseProvider>
+    </SafeAreaView>
+  );
+};
