@@ -2,6 +2,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './components/Home';
 import Auth from './components/Auth';
+import AppLandingPage from './components/AppLandingPage';
+import React from 'react';
 import { Flex, Image, NativeBaseProvider, Text } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -26,14 +28,10 @@ export default function App() {
       <NativeBaseProvider>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{headerShown: false}}>
-            <Stack.Screen 
-              name='Auth'
-              component={Auth}
-              options={{ title: 'Auth' }}/>
-            <Stack.Screen 
-              name='Home'
-              component={Home}
-              options={{ title: 'Home' , headerTitle: <LogoTitle title={'Home'} /> }}/>
+            <Stack.Screen name='AppLandingPage' component={AppLandingPage}/>
+            <Stack.Screen name='Auth' component={Auth}/>
+            <Stack.Screen name='Home' component={Home}
+              options={{ headerTitle: <LogoTitle title={'Home'} /> }}/>
           </Stack.Navigator>
         </NavigationContainer>
       </NativeBaseProvider>
