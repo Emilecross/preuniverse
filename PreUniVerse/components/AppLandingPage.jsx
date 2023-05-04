@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 20,
     color: preUniBlue,
+    // fontFamily: "hrb"
   },
   inputContainer: {
     width: '80%',

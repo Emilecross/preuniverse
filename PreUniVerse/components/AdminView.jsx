@@ -60,8 +60,6 @@ const AdminView = () => {
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Timetable" component={SettingsScreen} />
-      <Tab.Screen name="Bookings" component={SettingsScreen} />
-      <Tab.Screen name="Profile" component={SettingsScreen} />
     </Tab.Navigator>
   );
 }

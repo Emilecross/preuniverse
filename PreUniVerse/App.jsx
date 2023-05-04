@@ -1,7 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './components/Home';
-import Auth from './components/Auth';
 import AppLandingPage from './components/AppLandingPage';
 import React from 'react';
 import { Flex, Image, NativeBaseProvider, Text } from 'native-base';
@@ -29,7 +28,6 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen name='AppLandingPage' component={AppLandingPage}/>
-            <Stack.Screen name='Auth' component={Auth}/>
             <Stack.Screen name='Home' component={Home}
               options={{ headerTitle: <LogoTitle title={'Home'} /> }}/>
           </Stack.Navigator>
