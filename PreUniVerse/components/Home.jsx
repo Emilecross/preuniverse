@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Image } from 'react-native';
+import SubjectChips from './SubjectChips';
 // import { Card } from "@paraboly/react-native-card";
 
 function DashboardScreen({ navigation }) {
@@ -29,7 +30,7 @@ function SettingsScreen({ navigation }) {
 }
 
 function BookingsScreen({ navigation }) {
-  const [credits, setCredits] = useState(1); // Replace with your logic to determine if user has a booking this week
+  const [booked, setBooked] = useState(true);
   const bookingItem = {
     'date': '05/05/2023',
     'time': '4:30PM',
@@ -56,8 +57,9 @@ function BookingsScreen({ navigation }) {
       shadowOpacity: 0.25,
       shadowRadius: 3.84,
       elevation: 5,
-      justifyContent: 'center',
+      justifyContent: 'space-evenly',
       alignItems: 'center',
+      height: '90%'
     },
     bookingCardText: {
       fontSize: 18,
@@ -93,9 +95,7 @@ function BookingsScreen({ navigation }) {
     },
   });
 
-  if (credits === 0) return <></>;
-
-  return (
+  if (booked) return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.bookingCard}>
         <View style={styles.imageSlot}>
@@ -108,12 +108,22 @@ function BookingsScreen({ navigation }) {
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>Modify Booking</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, { marginLeft: 10, backgroundColor: '#bdbdbd' }]}>
+          <TouchableOpacity onPress={() => setBooked(!booked)} style={[styles.button, { marginLeft: 10, backgroundColor: '#bdbdbd' }]}>
             <Text style={styles.buttonText}>Cancel Booking</Text>
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
     </View>
+  );
+
+  return (
+  <>
+    <TouchableOpacity onPress={() => setBooked(!booked)}>
+      <Text>Toggle</Text>
+    </TouchableOpacity>
+
+    <SubjectChips></SubjectChips>
+  </>
   );
 }
 
