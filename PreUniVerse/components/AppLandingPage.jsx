@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import * as SplashScreen from 'expo-splash-screen';
 import {
   View,
   Image,
@@ -11,8 +10,6 @@ import {
   Keyboard,
 } from 'react-native';
 
-SplashScreen.preventAutoHideAsync();
-
 const AppLandingPage = ({ navigation }) => {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -23,7 +20,7 @@ const AppLandingPage = ({ navigation }) => {
 
   return (
     <TouchableWithoutFeedback onPress={dismissKeyboard}>
-      <View style={styles.container} onLayout={onLayoutRootView}>
+      <View style={styles.container}>
         <Image source={require('../assets/hsc_pro_logo.png')} style={styles.logo} />
         <View style={styles.inputContainer}>
           <Text>THE SMARTER WAY TO GO</Text>
