@@ -1,44 +1,76 @@
-import React from 'react';
-import { View, Image, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import React, { useRef } from 'react';
+import * as SplashScreen from 'expo-splash-screen';
+import {
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 
-const AppLandingPage = ({navigation}) => {
+SplashScreen.preventAutoHideAsync();
+
+const AppLandingPage = ({ navigation }) => {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const dismissKeyboard = () => {
+    Keyboard.dismiss();
+  };
+
   return (
-    <View style={styles.container}>
-      <Image source={require('../assets/Cello_Logo.png')} style={styles.logo} />
-      <Text style={styles.title}>Welcome to HSC Pro</Text>
-      <View style={styles.inputContainer}>
-        <TextInput placeholder="Email" style={styles.input} />
-        <TextInput placeholder="Password" secureTextEntry style={styles.input} />
-        <TouchableOpacity style={styles.forgotPassword}>
-          <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+    <TouchableWithoutFeedback onPress={dismissKeyboard}>
+      <View style={styles.container} onLayout={onLayoutRootView}>
+        <Image source={require('../assets/hsc_pro_logo.png')} style={styles.logo} />
+        <View style={styles.inputContainer}>
+          <Text>THE SMARTER WAY TO GO</Text>
+          <TextInput
+            ref={emailRef}
+            placeholder="Email"
+            style={styles.input}
+            returnKeyType="next"
+            onSubmitEditing={() => passwordRef.current.focus()}
+          />
+          <TextInput
+            ref={passwordRef}
+            placeholder="Password"
+            secureTextEntry
+            style={styles.input}
+            returnKeyType="done"
+            onSubmitEditing={dismissKeyboard}
+          />
+          <TouchableOpacity style={styles.forgotPassword}>
+            <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Home')}>
+          <Text style={styles.loginButtonText}>LOGIN</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity 
-      style={styles.loginButton}
-      onPress={() => navigation.navigate('Home')}
-      >
-        <Text style={styles.loginButtonText}>LOGIN</Text>
-      </TouchableOpacity>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
+const preUniBlue = '#028DE0'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
+    justifyContent: 'space-evenly',
+    backgroundColor: 'white',
   },
   logo: {
-    width: 100,
-    height: 100,
-    marginBottom: 20,
+    width: 200,
+    height: 200,
+    marginBottom: 20
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
     marginBottom: 20,
+    color: preUniBlue,
   },
   inputContainer: {
     width: '80%',
@@ -55,12 +87,13 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   forgotPasswordText: {
-    color: 'blue',
+    color: preUniBlue,
   },
   loginButton: {
-    backgroundColor: '#007bff',
-    padding: 10,
+    backgroundColor: preUniBlue,
     borderRadius: 10,
+    paddingHorizontal: 40,
+    paddingVertical: 10
   },
   loginButtonText: {
     color: '#fff',
