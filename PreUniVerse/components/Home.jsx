@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button, Text, View, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
 
 function HomeScreen({ navigation }) {
   return (
