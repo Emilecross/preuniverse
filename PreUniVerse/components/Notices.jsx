@@ -1,27 +1,44 @@
 import * as React from 'react';
-import { FlatList, StyleSheet, Button, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Button, Text, View, Image } from 'react-native';
 
-const Newsletter = () => {
+const data = [
+  { id: '1', title: 'Item 1' },
+  { id: '2', title: 'Item 2' },
+  { id: '3', title: 'Item 3' },
+];
+
+const Item = ({ title }) => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Notices!</Text>
-      <View style={styles.container}>
-      <FlatList
-        data={[
-          {key: 'Devin'},
-          {key: 'Tyrone'},
-          {key: 'Dominic'},
-          {key: 'Jackson'},
-          {key: 'James'},
-          {key: 'Joel'},
-          {key: 'John'},
-          {key: 'Jillian'},
-          {key: 'Jimmy'},
-          {key: 'Julie'},
-        ]}
-        renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
-      />
+    <View style={styles.item}>
+      <View>
+        <Text style={styles.title}>{title}</Text>
+        <View style={{flexDirection: 'column',
+            }
+          }>        
+          <Text>Date</Text>
+          <Text>Desc</Text>
+          <Text>Meme</Text>
+        </View>
+      </View>
+      <Button title="Learn More" color="#e74c3c" />
     </View>
+  );
+};
+
+const renderItem = ({ item }) => {
+  return <Item title={item.title} />;
+};
+
+const keyExtractor = item => item.id;
+
+const App = () => {
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+      />
     </View>
   );
 };
@@ -29,13 +46,35 @@ const Newsletter = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 22
+    backgroundColor: '#f9f9f9',
+    paddingTop: 50,
   },
   item: {
-    padding: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
+    marginHorizontal: 20,
+    marginBottom: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+  },
+  title: {
     fontSize: 18,
-    height: 44
-  }
+    fontWeight: 'bold',
+    color: '#2c3e50',
+    flex: 1,
+    marginRight: 20,
+  },
 });
 
-export default Newsletter;
+export default App;
