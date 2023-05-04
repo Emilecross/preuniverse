@@ -13,9 +13,6 @@ function HomeScreen({ navigation }) {
         title="Go to Settings"
         onPress={() => navigation.navigate('Settings')}
       />
-    <TouchableOpacity onPress={() => navigation.navigate('AppLandingPage')}>
-        <Text style={{ backgroundColor: '#f0f' }}>Back to landing page</Text>
-    </TouchableOpacity>
     </View>
   );
 }
@@ -58,15 +55,15 @@ const screenOptions = ({ route }) => ({
 
 const Tab = createBottomTabNavigator();
 
-const Home = () => {
+const AdminView = () => {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="My Classes" component={SettingsScreen} />
+      <Tab.Screen name="Timetable" component={SettingsScreen} />
       <Tab.Screen name="Bookings" component={SettingsScreen} />
       <Tab.Screen name="Profile" component={SettingsScreen} />
     </Tab.Navigator>
   );
 }
 
-export default Home;
+export default AdminView;
