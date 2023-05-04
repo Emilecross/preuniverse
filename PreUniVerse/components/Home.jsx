@@ -3,6 +3,7 @@ import { Button, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
+// import { Card } from "@paraboly/react-native-card";
 
 function DashboardScreen({ navigation }) {
   return (
@@ -12,6 +13,7 @@ function DashboardScreen({ navigation }) {
         title="Back to Auth"
         onPress={() => navigation.navigate('AppLandingPage')}
       />
+      <Button title="Go to Dashboard" onPress={() => navigation.navigate('Newsletter')} />
     </View>
   );
 }
@@ -51,7 +53,7 @@ const screenOptions = ({ route }) => ({
     // You can return any component that you like here!
     return <Ionicons name={iconName} size={size} color={color} />;
   },
-  tabBarActiveTintColor: 'tomato',
+  tabBarActiveTintColor: '#028DE0',
   tabBarInactiveTintColor: 'gray',
 })
 
