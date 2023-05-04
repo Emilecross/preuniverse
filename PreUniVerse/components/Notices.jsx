@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FlatList, StyleSheet, Button, Text, View, Image } from 'react-native';
+import { FlatList, StyleSheet, Button, Text, View, TouchableOpacity } from 'react-native';
 
 const data = [
   { id: '1', title: 'Item 1' },
@@ -12,9 +12,7 @@ const Item = ({ title }) => {
     <View style={styles.item}>
       <View>
         <Text style={styles.title}>{title}</Text>
-        <View style={{flexDirection: 'column',
-            }
-          }>        
+        <View style={{ flexDirection: 'column' }}>        
           <Text>Date</Text>
           <Text>Desc</Text>
           <Text>Meme</Text>
@@ -31,9 +29,12 @@ const renderItem = ({ item }) => {
 
 const keyExtractor = item => item.id;
 
-const App = () => {
+const Notices = ({ navigation }) => {
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Home')}>
+        <Text style={styles.loginButtonText}>Back</Text>
+      </TouchableOpacity>
       <FlatList
         data={data}
         renderItem={renderItem}
@@ -46,6 +47,9 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#f9f9f9',
     paddingTop: 50,
   },
@@ -77,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Notices;
