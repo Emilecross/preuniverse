@@ -45,6 +45,9 @@ const screenOptions = ({ route }) => ({
       case 'Profile':
         iconName = focused ? 'person-outline' : 'person-sharp';
         break;
+      case 'Settings':
+        iconName = focused ? 'settings-outline' : 'settings-sharp';
+        break;
       default:
     }
     // You can return any component that you like here!
@@ -64,6 +67,7 @@ const Home = () => {
       <Tab.Screen name="My Classes" component={SettingsScreen} />
       <Tab.Screen name="Bookings" component={SettingsScreen} />
       <Tab.Screen name="Profile" component={SettingsScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
 }

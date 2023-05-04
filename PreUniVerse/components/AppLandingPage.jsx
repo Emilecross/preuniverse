@@ -23,7 +23,6 @@ const AppLandingPage = ({ navigation }) => {
       <View style={styles.container}>
         <Image source={require('../assets/hsc_pro_logo.png')} style={styles.logo} />
         <View style={styles.inputContainer}>
-          <Text>THE SMARTER WAY TO GO</Text>
           <TextInput
             ref={emailRef}
             placeholder="Email"
@@ -68,7 +67,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 20,
     color: preUniBlue,
-    fontFamily: "hrb"
   },
   inputContainer: {
     width: '80%',
