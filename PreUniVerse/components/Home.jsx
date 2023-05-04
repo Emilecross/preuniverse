@@ -4,17 +4,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-function HomeScreen({ navigation }) {
+function DashboardScreen({ navigation }) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Home!</Text>
       <Button
-        title="Go to Settings"
-        onPress={() => navigation.navigate('Settings')}
+        title="Back to Auth"
+        onPress={() => navigation.navigate('AppLandingPage')}
       />
-    <TouchableOpacity onPress={() => navigation.navigate('AppLandingPage')}>
-        <Text style={{ backgroundColor: '#f0f' }}>Back to landing page</Text>
-    </TouchableOpacity>
     </View>
   );
 }
@@ -50,6 +47,7 @@ const screenOptions = ({ route }) => ({
         break;
       default:
     }
+
     // You can return any component that you like here!
     return <Ionicons name={iconName} size={size} color={color} />;
   },
@@ -63,11 +61,10 @@ const Tab = createBottomTabNavigator();
 const Home = () => {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Dashboard" component={DashboardScreen} />
       <Tab.Screen name="My Classes" component={SettingsScreen} />
       <Tab.Screen name="Bookings" component={SettingsScreen} />
       <Tab.Screen name="Profile" component={SettingsScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
 }
