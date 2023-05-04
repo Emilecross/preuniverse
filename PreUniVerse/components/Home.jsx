@@ -20,7 +20,7 @@ function SettingsScreen({ navigation }) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Settings!</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+      <Button title="Go to Dashboard" onPress={() => navigation.navigate('DashboardScreen')} />
     </View>
   );
 }
@@ -30,7 +30,7 @@ const screenOptions = ({ route }) => ({
     let iconName;
 
     switch (route.name) {
-      case 'Home':
+      case 'Dashboard':
         iconName = focused ? 'home-outline' : 'home-sharp';
         break;
       case 'My Classes':
