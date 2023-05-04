@@ -1,0 +1,14 @@
+{
+    "classes": [
+        "maths", "english", "science"
+    ],
+    "year": 10,
+    "bookings": [
+        {
+            "date": "10/05/2023",
+            "time": "17:00",
+            "subject": "maths"
+        }
+    ],
+    "phone": "0478499999"
+}
