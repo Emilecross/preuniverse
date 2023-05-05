@@ -118,11 +118,13 @@ function BookingsScreen({ navigation }) {
 
   return (
   <>
-    <TouchableOpacity onPress={() => setBooked(!booked)}>
-      <Text>Toggle</Text>
-    </TouchableOpacity>
-
-    <SubjectChips></SubjectChips>
+    <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
+      <TouchableOpacity onPress={() => setBooked(!booked)}>
+        <Text style={{ marginVertical: 8, fontSize: 36 }}>Toggle</Text>
+      </TouchableOpacity>
+      <Text style={{ marginVertical: 8, fontSize: 36 }}>Subjects</Text>
+        <SubjectChips></SubjectChips>
+    </View>
   </>
   );
 }
