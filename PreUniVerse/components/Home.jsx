@@ -127,23 +127,23 @@ function SettingsScreen({ navigation }) {
 }
 
 const ClassesScreen = () => {
-  const classes = []
+  const classes = [];
   const classItem = {
-    'year': '11',
-    'subject': 'physics',
-    'roomNum': '102',
-    'day': 'Saturday',
-    'timeStart': '13:00',
-    'timeEnd': '16:00'
-  }
+    year: '11',
+    subject: 'physics',
+    roomNum: '102',
+    day: 'Saturday',
+    timeStart: '13:00',
+    timeEnd: '16:00'
+  };
   for (let i = 0; i < 7; i = i + 1) {
-    classes.push(classItem)
+    classes.push(classItem);
   }
 
   const styles = StyleSheet.create({
     container: {
       paddingVertical: 20,
-      paddingHorizontal: 10,
+      paddingHorizontal: 10
     },
     card: {
       backgroundColor: 'gray',
@@ -153,21 +153,30 @@ const ClassesScreen = () => {
       flex: 1,
       flexDirection: 'row',
       justifyContent: 'space-between'
-    },
+    }
   });
 
   const renderItem = ({ item }) => (
     <View style={styles.card}>
       <Image
         source={{ uri: 'https://via.placeholder.com/150' }}
-        style={{ height: '100%', width: 80 }}
+        style={{ height: '100%', width: '30%' }}
       />
-      <View style={{ flex: 1, alignItems: 'center', paddingVertical: 10 }}>
-        <Text style={{fontSize: 24}}>Year {item.year}</Text>
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          paddingVertical: 10,
+          flexGrow: 1
+        }}
+      >
+        <Text style={{ fontSize: 24 }}>Year {item.year}</Text>
         <Text>{item.subject}</Text>
         <Text>{item.roomNum}</Text>
         <Text>{item.day}</Text>
-        <Text>{item.timeStart} - {item.timeEnd}</Text>
+        <Text>
+          {item.timeStart} - {item.timeEnd}
+        </Text>
       </View>
     </View>
   );
@@ -180,8 +189,7 @@ const ClassesScreen = () => {
       contentContainerStyle={styles.container}
     />
   );
-}
-
+};
 
 function BookingsScreen({ navigation }) {
   const [booked, setBooked] = useState(true);
