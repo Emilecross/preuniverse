@@ -21,7 +21,7 @@ const AppLandingPage = ({ navigation }) => {
   return (
     <TouchableWithoutFeedback onPress={dismissKeyboard}>
       <View style={styles.container}>
-        <Image source={require('../assets/hsc_pro_logo.png')} style={styles.logo} />
+        <Image source={require('../assets/pre_uni.jpg')} style={styles.logo} />
         <View style={styles.inputContainer}>
           <TextInput
             ref={emailRef}
