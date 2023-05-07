@@ -169,27 +169,29 @@ const ClassesScreen = () => {
           gap: 5
         }}
       >
-        <Text style={{ fontSize: 24 }}>Year {item.year} {item.subject}</Text>
+        <Text style={{ fontSize: 24 }}>
+          Year {item.year} {item.subject}
+        </Text>
         <Text style={{ fontSize: 18 }}>Room {item.roomNum}</Text>
         <Text style={{ fontSize: 20 }}>
-        {item.day} {item.timeStart} - {item.timeEnd}
+          {item.day} {item.timeStart} - {item.timeEnd}
         </Text>
       </View>
-        <Image
-          source={{ uri: 'https://via.placeholder.com/150' }}
-          style={{ height: '100%', width: '20%' }}
-        />
+      <Image
+        source={{ uri: 'https://via.placeholder.com/150' }}
+        style={{ height: '100%', width: '20%' }}
+      />
     </View>
   );
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <FlatList
         data={classes} // replace with your actual data
         renderItem={renderItem}
         keyExtractor={(_, index) => index.toString()}
         contentContainerStyle={styles.container}
-        ItemSeparatorComponent={() => <View style={{height: 10}} />}
+        ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
       />
     </SafeAreaView>
   );
