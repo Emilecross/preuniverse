@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Image } from 'react-native';
 import SubjectChips from './SubjectChips';
+import { FlatList } from 'native-base';
 // import { Card } from "@paraboly/react-native-card";
 
 function DashboardScreen({ navigation }) {
@@ -124,6 +125,63 @@ function SettingsScreen({ navigation }) {
     </View>
   );
 }
+
+const ClassesScreen = () => {
+  const classes = []
+  const classItem = {
+    'year': '11',
+    'subject': 'physics',
+    'roomNum': '102',
+    'day': 'Saturday',
+    'timeStart': '13:00',
+    'timeEnd': '16:00'
+  }
+  for (let i = 0; i < 7; i = i + 1) {
+    classes.push(classItem)
+  }
+
+  const styles = StyleSheet.create({
+    container: {
+      paddingVertical: 20,
+      paddingHorizontal: 10,
+    },
+    card: {
+      backgroundColor: 'gray',
+      borderRadius: 10,
+      marginBottom: 10,
+      overflow: 'hidden',
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-between'
+    },
+  });
+
+  const renderItem = ({ item }) => (
+    <View style={styles.card}>
+      <Image
+        source={{ uri: 'https://via.placeholder.com/150' }}
+        style={{ height: '100%', width: 80 }}
+      />
+      <View style={{ flex: 1, alignItems: 'center', paddingVertical: 10 }}>
+        <Text style={{fontSize: 24}}>Year {item.year}</Text>
+        <Text>{item.subject}</Text>
+        <Text>{item.roomNum}</Text>
+        <Text>{item.day}</Text>
+        <Text>{item.timeStart} - {item.timeEnd}</Text>
+      </View>
+    </View>
+  );
+
+  return (
+    <FlatList
+      data={classes} // replace with your actual data
+      renderItem={renderItem}
+      keyExtractor={(_, index) => index.toString()}
+      contentContainerStyle={styles.container}
+    />
+  );
+}
+
 
 function BookingsScreen({ navigation }) {
   const [booked, setBooked] = useState(true);
@@ -282,7 +340,7 @@ const Home = () => {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name="Dashboard" component={DashboardScreen} />
-      <Tab.Screen name="My Classes" component={SettingsScreen} />
+      <Tab.Screen name="My Classes" component={ClassesScreen} />
       <Tab.Screen name="Bookings" component={BookingsScreen} />
       <Tab.Screen name="Profile" component={SettingsScreen} />
     </Tab.Navigator>
