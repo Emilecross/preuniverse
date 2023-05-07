@@ -130,7 +130,7 @@ const ClassesScreen = () => {
   const classes = [];
   const classItem = {
     year: '11',
-    subject: 'physics',
+    subject: 'Physics',
     roomNum: '102',
     day: 'Saturday',
     timeStart: '13:00',
@@ -158,26 +158,26 @@ const ClassesScreen = () => {
 
   const renderItem = ({ item }) => (
     <View style={styles.card}>
-      <Image
-        source={{ uri: 'https://via.placeholder.com/150' }}
-        style={{ height: '100%', width: '30%' }}
-      />
       <View
         style={{
           flex: 1,
-          alignItems: 'center',
-          paddingVertical: 10,
-          flexGrow: 1
+          alignItems: 'flex-start',
+          paddingVertical: 20,
+          paddingLeft: 20,
+          flexGrow: 1,
+          gap: 5
         }}
       >
-        <Text style={{ fontSize: 24 }}>Year {item.year}</Text>
-        <Text>{item.subject}</Text>
-        <Text>{item.roomNum}</Text>
-        <Text>{item.day}</Text>
-        <Text>
-          {item.timeStart} - {item.timeEnd}
+        <Text style={{ fontSize: 24 }}>Year {item.year} {item.subject}</Text>
+        <Text style={{ fontSize: 18 }}>Room {item.roomNum}</Text>
+        <Text style={{ fontSize: 20 }}>
+        {item.day} {item.timeStart} - {item.timeEnd}
         </Text>
       </View>
+        <Image
+          source={{ uri: 'https://via.placeholder.com/150' }}
+          style={{ height: '100%', width: '20%' }}
+        />
     </View>
   );
 
@@ -187,6 +187,7 @@ const ClassesScreen = () => {
       renderItem={renderItem}
       keyExtractor={(_, index) => index.toString()}
       contentContainerStyle={styles.container}
+      ItemSeparatorComponent={() => <View style={{height: 10}} />}
     />
   );
 };
