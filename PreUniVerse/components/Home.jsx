@@ -9,13 +9,106 @@ import SubjectChips from './SubjectChips';
 
 function DashboardScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-      <Button
-        title="Back to Auth"
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+        paddingVertical: 20
+      }}
+    >
+      {/* Quiz report card below */}
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Newsletter')}
+        style={{
+          borderRadius: 20,
+          overflow: 'hidden',
+          width: '80%',
+          height: '20%',
+          backgroundColor: 'gray',
+          margin: 10
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}
+        >
+          <Image
+            source={{ uri: 'https://via.placeholder.com/150' }}
+            style={{ height: '100%', width: 80 }}
+          />
+          <View style={{ flex: 1, alignItems: 'center' }}>
+            <Text style={{ marginLeft: 10 }}>My Quiz Report</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+
+      {/* Announcement card below */}
+      <TouchableOpacity
         onPress={() => navigation.navigate('AppLandingPage')}
-      />
-      <Button title="Go to Dashboard" onPress={() => navigation.navigate('Newsletter')} />
+        style={{
+          borderRadius: 20,
+          overflow: 'hidden',
+          width: '80%',
+          height: '20%',
+          backgroundColor: 'gray',
+          margin: 10
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}
+        >
+          <Image
+            source={{ uri: 'https://via.placeholder.com/150' }}
+            style={{ height: '100%', width: 80 }}
+          />
+          <View style={{ flex: 1, alignItems: 'center' }}>
+            <Text style={{ marginLeft: 10 }}>Announcements</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+
+      {/* Next Class card */}
+      <View
+        style={{
+          borderRadius: 20,
+          overflow: 'hidden',
+          width: '80%',
+          flexGrow: 1,
+          backgroundColor: 'gray',
+          margin: 10
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'flex-start',
+            alignItems: 'center'
+          }}
+        >
+          <Image
+            source={{ uri: 'https://via.placeholder.com/150' }}
+            style={{ height: '30%', width: '100%' }}
+          />
+          <View
+            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+          >
+            <Text>Your Next Class is Mathematics</Text>
+            <Text>On Saturday</Text>
+            <Text>From 3:20 PM to 4:50PM</Text>
+          </View>
+        </View>
+      </View>
     </View>
   );
 }
@@ -24,7 +117,10 @@ function SettingsScreen({ navigation }) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Settings!</Text>
-      <Button title="Go to Dashboard" onPress={() => navigation.navigate('Dashboard')} />
+      <Button
+        title="Go to Dashboard"
+        onPress={() => navigation.navigate('Dashboard')}
+      />
     </View>
   );
 }
@@ -32,12 +128,12 @@ function SettingsScreen({ navigation }) {
 function BookingsScreen({ navigation }) {
   const [booked, setBooked] = useState(true);
   const bookingItem = {
-    'date': '05/05/2023',
-    'time': '4:30PM',
-    'location': 'Online',
-    'year': 8,
-    'subject': 'English',
-    'imageUrl': 'https://via.placeholder.com/150', // Replace with your booking image URL
+    date: '05/05/2023',
+    time: '4:30PM',
+    location: 'Online',
+    year: 8,
+    subject: 'English',
+    imageUrl: 'https://via.placeholder.com/150' // Replace with your booking image URL
   };
 
   const styles = StyleSheet.create({
@@ -46,7 +142,7 @@ function BookingsScreen({ navigation }) {
       padding: 20,
       justifyContent: 'flex-start',
       alignItems: 'center',
-      backgroundColor: '#028DE0',
+      backgroundColor: '#028DE0'
     },
     bookingCard: {
       backgroundColor: '#fff',
@@ -65,20 +161,20 @@ function BookingsScreen({ navigation }) {
       fontSize: 18,
       fontWeight: 'bold',
       textAlign: 'left',
-      marginTop: 5,
+      marginTop: 5
     },
     imageSlot: {
       width: 100,
       height: 100,
-      backgroundColor: "#f2f2f2",
+      backgroundColor: '#f2f2f2',
       borderRadius: 50,
-      justifyContent: "center",
-      alignItems: "center",
-      marginBottom: 10,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginBottom: 10
     },
     bookingImage: {
       width: 80,
-      height: 80,
+      height: 80
     },
     button: {
       marginTop: 10,
@@ -86,46 +182,67 @@ function BookingsScreen({ navigation }) {
       padding: 10,
       borderRadius: 5,
       width: 120,
-      alignItems: 'center',
+      alignItems: 'center'
     },
     buttonText: {
       color: '#fff',
       fontSize: 16,
-      fontWeight: 'bold',
-    },
+      fontWeight: 'bold'
+    }
   });
 
-  if (booked) return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.bookingCard}>
-        <View style={styles.imageSlot}>
-          <Image source={{ uri: bookingItem.imageUrl }} style={styles.bookingImage} />
-        </View>
-        <Text style={styles.bookingCardText}>{bookingItem.date} at {bookingItem.time}</Text>
-        <Text style={styles.bookingCardText}>{bookingItem.location}</Text>
-        <Text style={styles.bookingCardText}>Year {bookingItem.year} - {bookingItem.subject}</Text>
-        <View style={{ flexDirection: 'row', marginTop: 10 }}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Modify Booking</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setBooked(!booked)} style={[styles.button, { marginLeft: 10, backgroundColor: '#bdbdbd' }]}>
-            <Text style={styles.buttonText}>Cancel Booking</Text>
-          </TouchableOpacity>
-        </View>
-      </TouchableOpacity>
-    </View>
-  );
+  if (booked)
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.bookingCard}>
+          <View style={styles.imageSlot}>
+            <Image
+              source={{ uri: bookingItem.imageUrl }}
+              style={styles.bookingImage}
+            />
+          </View>
+          <Text style={styles.bookingCardText}>
+            {bookingItem.date} at {bookingItem.time}
+          </Text>
+          <Text style={styles.bookingCardText}>{bookingItem.location}</Text>
+          <Text style={styles.bookingCardText}>
+            Year {bookingItem.year} - {bookingItem.subject}
+          </Text>
+          <View style={{ flexDirection: 'row', marginTop: 10 }}>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>Modify Booking</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => setBooked(!booked)}
+              style={[
+                styles.button,
+                { marginLeft: 10, backgroundColor: '#bdbdbd' }
+              ]}
+            >
+              <Text style={styles.buttonText}>Cancel Booking</Text>
+            </TouchableOpacity>
+          </View>
+        </TouchableOpacity>
+      </View>
+    );
 
   return (
-  <>
-    <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
-      <TouchableOpacity onPress={() => setBooked(!booked)}>
-        <Text style={{ marginVertical: 8, fontSize: 36 }}>Toggle</Text>
-      </TouchableOpacity>
-      <Text style={{ marginVertical: 8, fontSize: 36 }}>Subjects</Text>
+    <>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}
+      >
+        <TouchableOpacity onPress={() => setBooked(!booked)}>
+          <Text style={{ marginVertical: 8, fontSize: 36 }}>Toggle</Text>
+        </TouchableOpacity>
+        <Text style={{ marginVertical: 8, fontSize: 36 }}>Subjects</Text>
         <SubjectChips></SubjectChips>
-    </View>
-  </>
+      </View>
+    </>
   );
 }
 
@@ -156,21 +273,20 @@ const screenOptions = ({ route }) => ({
     return <Ionicons name={iconName} size={size} color={color} />;
   },
   tabBarActiveTintColor: '#028DE0',
-  tabBarInactiveTintColor: 'gray',
-})
-
+  tabBarInactiveTintColor: 'gray'
+});
 
 const Tab = createBottomTabNavigator();
 
 const Home = () => {
   return (
-    <Tab.Navigator screenOptions={screenOptions} >
+    <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name="Dashboard" component={DashboardScreen} />
       <Tab.Screen name="My Classes" component={SettingsScreen} />
       <Tab.Screen name="Bookings" component={BookingsScreen} />
       <Tab.Screen name="Profile" component={SettingsScreen} />
     </Tab.Navigator>
   );
-}
+};
 
 export default Home;
