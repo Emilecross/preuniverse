@@ -6,11 +6,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Image } from 'react-native';
 import SubjectChips from './SubjectChips';
 import { FlatList } from 'native-base';
+import { SafeAreaView } from 'react-native-safe-area-context';
 // import { Card } from "@paraboly/react-native-card";
 
 function DashboardScreen({ navigation }) {
   return (
-    <View
+    <SafeAreaView
       style={{
         flex: 1,
         justifyContent: 'space-between',
@@ -110,7 +111,7 @@ function DashboardScreen({ navigation }) {
           </View>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -182,13 +183,15 @@ const ClassesScreen = () => {
   );
 
   return (
-    <FlatList
-      data={classes} // replace with your actual data
-      renderItem={renderItem}
-      keyExtractor={(_, index) => index.toString()}
-      contentContainerStyle={styles.container}
-      ItemSeparatorComponent={() => <View style={{height: 10}} />}
-    />
+    <SafeAreaView style={{flex: 1}}>
+      <FlatList
+        data={classes} // replace with your actual data
+        renderItem={renderItem}
+        keyExtractor={(_, index) => index.toString()}
+        contentContainerStyle={styles.container}
+        ItemSeparatorComponent={() => <View style={{height: 10}} />}
+      />
+    </SafeAreaView>
   );
 };
 
@@ -260,7 +263,7 @@ function BookingsScreen({ navigation }) {
 
   if (booked)
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <TouchableOpacity style={styles.bookingCard}>
           <View style={styles.imageSlot}>
             <Image
@@ -290,7 +293,7 @@ function BookingsScreen({ navigation }) {
             </TouchableOpacity>
           </View>
         </TouchableOpacity>
-      </View>
+      </SafeAreaView>
     );
 
   return (
@@ -340,7 +343,8 @@ const screenOptions = ({ route }) => ({
     return <Ionicons name={iconName} size={size} color={color} />;
   },
   tabBarActiveTintColor: '#028DE0',
-  tabBarInactiveTintColor: 'gray'
+  tabBarInactiveTintColor: 'gray',
+  headerShown: false
 });
 
 const Tab = createBottomTabNavigator();
