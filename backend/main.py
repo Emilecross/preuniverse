@@ -1,13 +1,33 @@
 from typing import Union
-
+import pymongo
+import certifi
 from fastapi import FastAPI, Response, HTTPException
 
 app = FastAPI()
 
+# def get_database():
+#     # username = input("Enter your MongoDB username: ")
+#     # password = pwinput(prompt="Enter your MongoDB password: ", mask="*")
+#     uri = f'mongodb+srv://aas:aas@preuniapp.mnray5n.mongodb.net/?retryWrites=true&w=majority'
+#     client = pymongo.MongoClient(uri, tlsCAFile=certifi.where())
+#     # Send a ping to confirm a successful connection
+#     try:
+#         client.admin.command('ping')
+#         print("Pinged your deployment. You successfully connected to MongoDB!")
+#     except Exception as e:
+#         print(e)
+
+#     return client.db
+
+# get_database()
+
 @app.get("/mobile/info")
-def getuser(response: Response):
-    if 'token' not in response.headers:
-        raise HTTPException(status_code=400, detail='no token')
+def getuser(response: Response, token: str = None):
+    print('hi')
+    print(response.headers)
+    if not response.headers.get('token'):
+        print('bad token')
+        # raise HTTPException(status_code=400, detail='no token')
     return {
         "name": "Bob",
         "uid": 12345,
@@ -26,7 +46,6 @@ def getuser(response: Response):
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
-
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
