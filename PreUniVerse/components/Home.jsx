@@ -26,7 +26,7 @@ function DashboardScreen({ navigation }) {
           overflow: 'hidden',
           width: '80%',
           height: '20%',
-          backgroundColor: 'gray',
+          backgroundColor: '#37A0FF',
           marginBottom: 10
         }}
       >
@@ -38,12 +38,14 @@ function DashboardScreen({ navigation }) {
             alignItems: 'center'
           }}
         >
-          <Image
-            source={{ uri: 'https://via.placeholder.com/150' }}
-            style={{ height: '100%', width: 80 }}
-          />
+          <View style={{backgroundColor: '#FF3F40'}}>
+            <Image
+              source={require('../assets/Picture2.png')}
+              style={{ height: '100%', width: 80, resizeMode: 'contain' }}
+            />
+          </View>
           <View style={{ flex: 1, alignItems: 'center' }}>
-            <Text style={{ marginLeft: 10 }}>My Quiz Report</Text>
+            <Text style={{ marginLeft: 10, color: 'white', fontSize: 20, fontWeight: 'bold'}}>My Quiz Report</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -56,8 +58,8 @@ function DashboardScreen({ navigation }) {
           overflow: 'hidden',
           width: '80%',
           height: '20%',
-          backgroundColor: 'gray',
-          margin: 10
+          backgroundColor: '#0062BC',
+          margin: 10,
         }}
       >
         <View
@@ -68,12 +70,14 @@ function DashboardScreen({ navigation }) {
             alignItems: 'center'
           }}
         >
-          <Image
-            source={{ uri: 'https://via.placeholder.com/150' }}
-            style={{ height: '100%', width: 80 }}
-          />
+          <View style={{backgroundColor: '#FFD801'}}>
+            <Image
+              source={require('../assets/Picture1.png')}
+              style={{ height: '100%', width: 80, resizeMode: 'contain' }}
+            />
+          </View>
           <View style={{ flex: 1, alignItems: 'center' }}>
-            <Text style={{ marginLeft: 10 }}>Announcements</Text>
+            <Text style={{ marginLeft: 10, color: 'white', fontSize: 20, fontWeight: 'bold'}}>Announcements</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -85,10 +89,12 @@ function DashboardScreen({ navigation }) {
           overflow: 'hidden',
           width: '80%',
           flexGrow: 1,
-          backgroundColor: 'gray',
-          margin: 10
+          backgroundColor: '#002060',
+          margin: 10,
         }}
       >
+        <View style={{ backgroundColor: 'gray', height: 80}}>
+        </View>
         <View
           style={{
             flex: 1,
@@ -96,16 +102,12 @@ function DashboardScreen({ navigation }) {
             alignItems: 'center'
           }}
         >
-          <Image
-            source={{ uri: 'https://via.placeholder.com/150' }}
-            style={{ height: '30%', width: '100%' }}
-          />
           <View
-            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+            style={{ flex: 1, alignItems: 'center', justifyContent: 'space-evenly' }}
           >
-            <Text>Your Next Class is Mathematics</Text>
-            <Text>On Saturday</Text>
-            <Text>From 3:20 PM to 4:50PM</Text>
+            <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>Your Next Class is</Text>
+            <Text style={{ color: 'white', fontSize: 20 }}>Mathematics on Saturday</Text>
+            <Text style={{ color: 'white', fontSize: 20 }}>From 3:20 PM to 4:50PM</Text>
           </View>
         </View>
       </View>
@@ -347,7 +349,7 @@ const screenOptions = ({ route }) => ({
     // You can return any component that you like here!
     return <Ionicons name={iconName} size={size} color={color} />;
   },
-  tabBarActiveTintColor: '#0A224E',
+  tabBarActiveTintColor: '#002060',
   tabBarInactiveTintColor: 'gray',
   headerTitle: () => (
     <View style={{ flex: 1, overflow: 'hidden', justifyContent: 'center', alignItems: 'center'}}>
@@ -359,7 +361,7 @@ const screenOptions = ({ route }) => ({
     </View>
   ),
   headerStyle: {
-    backgroundColor: '#0A224E',
+    backgroundColor: '#002060',
   },
   headerTintColor: '#fff',
   headerTitleAlign: 'center',

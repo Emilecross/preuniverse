@@ -7,7 +7,7 @@ import {
   Text,
   StyleSheet,
   TouchableWithoutFeedback,
-  Keyboard,
+  Keyboard
 } from 'react-native';
 
 const AppLandingPage = ({ navigation }) => {
@@ -21,7 +21,7 @@ const AppLandingPage = ({ navigation }) => {
   return (
     <TouchableWithoutFeedback onPress={dismissKeyboard}>
       <View style={styles.container}>
-        <Image source={require('../assets/pre_uni.jpg')} style={styles.logo} />
+        <Image source={require('../assets/preuni.png')} style={styles.logo} />
         <View style={styles.inputContainer}>
           <TextInput
             ref={emailRef}
@@ -42,7 +42,10 @@ const AppLandingPage = ({ navigation }) => {
             <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Home')}>
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={() => navigation.navigate('Home')}
+        >
           <Text style={styles.loginButtonText}>LOGIN</Text>
         </TouchableOpacity>
       </View>
@@ -50,52 +53,48 @@ const AppLandingPage = ({ navigation }) => {
   );
 };
 
-const preUniBlue = '#028DE0'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    backgroundColor: 'white',
+    backgroundColor: '#002060'
   },
   logo: {
-    width: 200,
-    height: 200,
-    marginBottom: 20
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
-    color: preUniBlue,
+    width: 225,
+    height: 225,
+    resizeMode: 'contain'
   },
   inputContainer: {
     width: '80%',
-    marginBottom: 20,
+    marginBottom: 20
   },
   input: {
     height: 50,
     backgroundColor: '#f0f0f0',
     paddingLeft: 20,
     marginBottom: 10,
-    borderRadius: 10,
+    borderRadius: 10
   },
   forgotPassword: {
-    alignSelf: 'flex-end',
+    alignSelf: 'flex-end'
   },
   forgotPasswordText: {
-    color: preUniBlue,
+    color: 'white',
+    textDecorationLine: 'underline'
   },
   loginButton: {
-    backgroundColor: preUniBlue,
-    borderRadius: 10,
+    backgroundColor: 'white',
+    borderRadius: 20,
     paddingHorizontal: 40,
-    paddingVertical: 10
+    paddingVertical: 10,
+    width: '80%'
   },
   loginButtonText: {
-    color: '#fff',
-    // fontWeight: 'bold',
+    color: '#002060',
     fontSize: 18,
-  },
+    textAlign: 'center'
+  }
 });
 
 export default AppLandingPage;
