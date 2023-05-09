@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Image } from 'react-native';
 import SubjectChips from './SubjectChips';
@@ -232,7 +231,7 @@ function BookingsScreen({ navigation }) {
     bookingCardText: {
       fontSize: 18,
       fontWeight: 'bold',
-      textAlign: 'left',
+      textAlign: 'center',
       marginTop: 5
     },
     imageSlot: {
@@ -300,11 +299,11 @@ function BookingsScreen({ navigation }) {
 
   return (
     <>
-      <View
+      <SafeAreaView
         style={{
           flex: 1,
           flexDirection: 'column',
-          justifyContent: 'space-between',
+          justifyContent: 'flex-start',
           alignItems: 'center'
         }}
       >
@@ -313,7 +312,9 @@ function BookingsScreen({ navigation }) {
         </TouchableOpacity>
         <Text style={{ marginVertical: 8, fontSize: 36 }}>Subjects</Text>
         <SubjectChips></SubjectChips>
-      </View>
+        <Text style={{ marginVertical: 8, fontSize: 36 }}>Times</Text>
+        <SubjectChips></SubjectChips>
+      </SafeAreaView>
     </>
   );
 }
