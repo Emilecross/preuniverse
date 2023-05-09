@@ -3,7 +3,7 @@ import { Button, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Image } from 'react-native';
-import SubjectChips from './SubjectChips';
+import ItemChips from './ItemChips';
 import { FlatList } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 // import { Card } from "@paraboly/react-native-card";
@@ -13,10 +13,9 @@ function DashboardScreen({ navigation }) {
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
         width: '100%',
-        paddingVertical: 20
       }}
     >
       {/* Quiz report card below */}
@@ -28,7 +27,7 @@ function DashboardScreen({ navigation }) {
           width: '80%',
           height: '20%',
           backgroundColor: 'gray',
-          margin: 10
+          marginBottom: 10
         }}
       >
         <View
@@ -297,25 +296,28 @@ function BookingsScreen({ navigation }) {
       </SafeAreaView>
     );
 
+  const subjects = ['Math', 'Science', 'English']; // array of subjects
+  const days = ['29th', '30th', '31st', '1st']
+  const times = ['3:00 pm', '3:30 pm', '4:00 pm', '4:30 pm', '5:00 pm', '5:30 pm', '6:00 pm', '6:30 pm'];
   return (
-    <>
-      <SafeAreaView
-        style={{
-          flex: 1,
-          flexDirection: 'column',
-          justifyContent: 'flex-start',
-          alignItems: 'center'
-        }}
-      >
-        <TouchableOpacity onPress={() => setBooked(!booked)}>
-          <Text style={{ marginVertical: 8, fontSize: 36 }}>Toggle</Text>
-        </TouchableOpacity>
-        <Text style={{ marginVertical: 8, fontSize: 36 }}>Subjects</Text>
-        <SubjectChips></SubjectChips>
-        <Text style={{ marginVertical: 8, fontSize: 36 }}>Times</Text>
-        <SubjectChips></SubjectChips>
-      </SafeAreaView>
-    </>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+      }}
+    >
+      <TouchableOpacity onPress={() => setBooked(!booked)}>
+        <Text style={{ marginVertical: 8, fontSize: 36 }}>Toggle</Text>
+      </TouchableOpacity>
+      <Text style={{ marginVertical: 8, fontSize: 36 }}>Subjects</Text>
+      <ItemChips data={subjects}></ItemChips>
+      <Text style={{ marginVertical: 8, fontSize: 36 }}>Days</Text>
+      <ItemChips data={days}></ItemChips>
+      <Text style={{ marginVertical: 8, fontSize: 36 }}>Times</Text>
+      <ItemChips data={times}></ItemChips>
+    </SafeAreaView>
   );
 }
 
@@ -325,19 +327,19 @@ const screenOptions = ({ route }) => ({
 
     switch (route.name) {
       case 'Dashboard':
-        iconName = focused ? 'home-outline' : 'home-sharp';
+        iconName = focused ? 'home' : 'home-sharp';
         break;
       case 'My Classes':
-        iconName = focused ? 'book-outline' : 'book-sharp';
+        iconName = focused ? 'school' : 'school-sharp';
         break;
       case 'Bookings':
-        iconName = focused ? 'call-outline' : 'call-sharp';
+        iconName = focused ? 'calendar' : 'calendar-sharp';
         break;
       case 'Profile':
-        iconName = focused ? 'person-outline' : 'person-sharp';
+        iconName = focused ? 'person' : 'person-sharp';
         break;
       case 'Settings':
-        iconName = focused ? 'settings-outline' : 'settings-sharp';
+        iconName = focused ? 'settings' : 'settings-sharp';
         break;
       default:
     }
@@ -345,9 +347,22 @@ const screenOptions = ({ route }) => ({
     // You can return any component that you like here!
     return <Ionicons name={iconName} size={size} color={color} />;
   },
-  tabBarActiveTintColor: '#028DE0',
+  tabBarActiveTintColor: '#0A224E',
   tabBarInactiveTintColor: 'gray',
-  headerShown: false
+  headerTitle: () => (
+    <View style={{ flex: 1, overflow: 'hidden', justifyContent: 'center', alignItems: 'center'}}>
+      <Image
+        source={require('../assets/NC.png')}
+        resizeMode="contain"
+        style={{ alignSelf: 'center', width: 200, height: 100 }}
+      />
+    </View>
+  ),
+  headerStyle: {
+    backgroundColor: '#0A224E',
+  },
+  headerTintColor: '#fff',
+  headerTitleAlign: 'center',
 });
 
 const Tab = createBottomTabNavigator();
