@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Button, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Image } from 'react-native';
-import SubjectChips from './SubjectChips';
+import ItemChips from './ItemChips';
 import { FlatList } from 'native-base';
 import { SafeAreaView } from 'react-native-safe-area-context';
 // import { Card } from "@paraboly/react-native-card";
@@ -14,10 +13,9 @@ function DashboardScreen({ navigation }) {
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
         width: '100%',
-        paddingVertical: 20
       }}
     >
       {/* Quiz report card below */}
@@ -28,8 +26,8 @@ function DashboardScreen({ navigation }) {
           overflow: 'hidden',
           width: '80%',
           height: '20%',
-          backgroundColor: 'gray',
-          margin: 10
+          backgroundColor: '#37A0FF',
+          marginBottom: 10
         }}
       >
         <View
@@ -40,12 +38,14 @@ function DashboardScreen({ navigation }) {
             alignItems: 'center'
           }}
         >
-          <Image
-            source={{ uri: 'https://via.placeholder.com/150' }}
-            style={{ height: '100%', width: 80 }}
-          />
+          <View style={{backgroundColor: '#FF3F40'}}>
+            <Image
+              source={require('../assets/Picture2.png')}
+              style={{ height: '100%', width: 80, resizeMode: 'contain' }}
+            />
+          </View>
           <View style={{ flex: 1, alignItems: 'center' }}>
-            <Text style={{ marginLeft: 10 }}>My Quiz Report</Text>
+            <Text style={{ marginLeft: 10, color: 'white', fontSize: 20, fontWeight: 'bold'}}>My Quiz Report</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -58,8 +58,8 @@ function DashboardScreen({ navigation }) {
           overflow: 'hidden',
           width: '80%',
           height: '20%',
-          backgroundColor: 'gray',
-          margin: 10
+          backgroundColor: '#0062BC',
+          margin: 10,
         }}
       >
         <View
@@ -70,12 +70,14 @@ function DashboardScreen({ navigation }) {
             alignItems: 'center'
           }}
         >
-          <Image
-            source={{ uri: 'https://via.placeholder.com/150' }}
-            style={{ height: '100%', width: 80 }}
-          />
+          <View style={{backgroundColor: '#FFD801'}}>
+            <Image
+              source={require('../assets/Picture1.png')}
+              style={{ height: '100%', width: 80, resizeMode: 'contain' }}
+            />
+          </View>
           <View style={{ flex: 1, alignItems: 'center' }}>
-            <Text style={{ marginLeft: 10 }}>Announcements</Text>
+            <Text style={{ marginLeft: 10, color: 'white', fontSize: 20, fontWeight: 'bold'}}>Announcements</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -87,10 +89,12 @@ function DashboardScreen({ navigation }) {
           overflow: 'hidden',
           width: '80%',
           flexGrow: 1,
-          backgroundColor: 'gray',
-          margin: 10
+          backgroundColor: '#002060',
+          margin: 10,
         }}
       >
+        <View style={{ backgroundColor: 'gray', height: 80}}>
+        </View>
         <View
           style={{
             flex: 1,
@@ -98,16 +102,12 @@ function DashboardScreen({ navigation }) {
             alignItems: 'center'
           }}
         >
-          <Image
-            source={{ uri: 'https://via.placeholder.com/150' }}
-            style={{ height: '30%', width: '100%' }}
-          />
           <View
-            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+            style={{ flex: 1, alignItems: 'center', justifyContent: 'space-evenly' }}
           >
-            <Text>Your Next Class is Mathematics</Text>
-            <Text>On Saturday</Text>
-            <Text>From 3:20 PM to 4:50PM</Text>
+            <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>Your Next Class is</Text>
+            <Text style={{ color: 'white', fontSize: 20 }}>Mathematics on Saturday</Text>
+            <Text style={{ color: 'white', fontSize: 20 }}>From 3:20 PM to 4:50PM</Text>
           </View>
         </View>
       </View>
@@ -232,7 +232,7 @@ function BookingsScreen({ navigation }) {
     bookingCardText: {
       fontSize: 18,
       fontWeight: 'bold',
-      textAlign: 'left',
+      textAlign: 'center',
       marginTop: 5
     },
     imageSlot: {
@@ -298,23 +298,28 @@ function BookingsScreen({ navigation }) {
       </SafeAreaView>
     );
 
+  const subjects = ['Math', 'Science', 'English']; // array of subjects
+  const days = ['29th', '30th', '31st', '1st']
+  const times = ['3:00 pm', '3:30 pm', '4:00 pm', '4:30 pm', '5:00 pm', '5:30 pm', '6:00 pm', '6:30 pm'];
   return (
-    <>
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}
-      >
-        <TouchableOpacity onPress={() => setBooked(!booked)}>
-          <Text style={{ marginVertical: 8, fontSize: 36 }}>Toggle</Text>
-        </TouchableOpacity>
-        <Text style={{ marginVertical: 8, fontSize: 36 }}>Subjects</Text>
-        <SubjectChips></SubjectChips>
-      </View>
-    </>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+      }}
+    >
+      <TouchableOpacity onPress={() => setBooked(!booked)}>
+        <Text style={{ marginVertical: 8, fontSize: 36 }}>Toggle</Text>
+      </TouchableOpacity>
+      <Text style={{ marginVertical: 8, fontSize: 36 }}>Subjects</Text>
+      <ItemChips data={subjects}></ItemChips>
+      <Text style={{ marginVertical: 8, fontSize: 36 }}>Days</Text>
+      <ItemChips data={days}></ItemChips>
+      <Text style={{ marginVertical: 8, fontSize: 36 }}>Times</Text>
+      <ItemChips data={times}></ItemChips>
+    </SafeAreaView>
   );
 }
 
@@ -324,19 +329,19 @@ const screenOptions = ({ route }) => ({
 
     switch (route.name) {
       case 'Dashboard':
-        iconName = focused ? 'home-outline' : 'home-sharp';
+        iconName = focused ? 'home' : 'home-sharp';
         break;
       case 'My Classes':
-        iconName = focused ? 'book-outline' : 'book-sharp';
+        iconName = focused ? 'school' : 'school-sharp';
         break;
       case 'Bookings':
-        iconName = focused ? 'call-outline' : 'call-sharp';
+        iconName = focused ? 'calendar' : 'calendar-sharp';
         break;
       case 'Profile':
-        iconName = focused ? 'person-outline' : 'person-sharp';
+        iconName = focused ? 'person' : 'person-sharp';
         break;
       case 'Settings':
-        iconName = focused ? 'settings-outline' : 'settings-sharp';
+        iconName = focused ? 'settings' : 'settings-sharp';
         break;
       default:
     }
@@ -344,9 +349,22 @@ const screenOptions = ({ route }) => ({
     // You can return any component that you like here!
     return <Ionicons name={iconName} size={size} color={color} />;
   },
-  tabBarActiveTintColor: '#028DE0',
+  tabBarActiveTintColor: '#002060',
   tabBarInactiveTintColor: 'gray',
-  headerShown: false
+  headerTitle: () => (
+    <View style={{ flex: 1, overflow: 'hidden', justifyContent: 'center', alignItems: 'center'}}>
+      <Image
+        source={require('../assets/NC.png')}
+        resizeMode="contain"
+        style={{ alignSelf: 'center', width: 200, height: 100 }}
+      />
+    </View>
+  ),
+  headerStyle: {
+    backgroundColor: '#002060',
+  },
+  headerTintColor: '#fff',
+  headerTitleAlign: 'center',
 });
 
 const Tab = createBottomTabNavigator();
