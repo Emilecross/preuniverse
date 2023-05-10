@@ -14,6 +14,8 @@ PreUni-Verse is an online learning management system that allows students to eas
 
 ## Technology Stack
 
+<img src='hqdefault.jpg' />
+
 PreUni-Verse is built using the following technologies:
 
 - Frontend: React Native
