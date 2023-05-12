@@ -1,10 +1,12 @@
 from typing import Union
 import pymongo
 import certifi
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.encoders import jsonable_encoder
 # import pprint
 import json
+from typing import List
+from pydantic import BaseModel
 from bson.objectid import ObjectId
 from bson import json_util
 import re
@@ -42,18 +44,65 @@ def getuser(request: Request):
     print(token)
     if not token or not re.match(r'^[a-f\d]{24}$', token):
         # print('bad token')
-        raise HTTPException(status_code=400, detail='bad token')
+        raise HTTPException(status_code=401, detail='bad token')
 
 
 
     # sample '645a2c83e33586fb354ab30b'
-    query = table.find_one({'_id': ObjectId(request.headers.get('token'))})
+    query = table.find_one({'_id': ObjectId(token)})
 
     if not query:
-        raise HTTPException(status_code=400, detail='no user found')
+        raise HTTPException(status_code=404, detail='no user found')
     
     return cleanQuery(query)
 
+@app.get("/mobile/bookings")
+def getbooking(request: Request):
+
+    token = request.headers.get('token')
+    print(token)
+    if not token or not re.match(r'^[a-f\d]{24}$', token):
+        # print('bad token')
+        raise HTTPException(status_code=401, detail='bad token')
+
+    # sample '645a2c83e33586fb354ab30b'
+    query = table.find_one({'_id': ObjectId(token)})
+
+    if not query:
+        raise HTTPException(status_code=404, detail='no user found')
+    
+    # return the latest booking
+    return cleanQuery(query)['bookings'][0]
+
+class PostStudent(BaseModel):
+    name: str
+    year: str
+    subjects: List[str]
+    phone: str
+
+
+@app.post("/admin/user")
+async def create_user(response: PostStudent):
+    # name
+    # year
+    # student
+    # subjects
+    # phone
+    data = await response.json
+
+    needed = ['name', 'year', 'subjects', 'phone']
+    if not all(key for key in needed in data):
+        return HTTPException(status_code=404, detail='invalid fields')
+
+    # add extra data
+    table.insert_one({
+        'name': data['name'],
+        'year': data['year'],
+        # 'student': data['student'],
+        'subjects': data['subjects'],
+        'phone': data['phone'],
+        'bookings': []
+    })
 
 @app.get("/")
 def read_root():
