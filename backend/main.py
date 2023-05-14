@@ -40,8 +40,7 @@ def cleanQuery(query):
 
 @app.get("/mobile/classes")
 def getclasses(request: Request):
-    return {
-        [
+    return [
             {'name': 'YR9 Maths',
             'timeStart': '9:00AM',
             'timeEnd': '10:30AM',
@@ -56,9 +55,8 @@ def getclasses(request: Request):
             'timeStart': '12:30PM',
             'timeEnd': '1:30PM',
             'room': '107',
-            },
-        ]
-    }
+            }
+    ]
 
 @app.get("/mobile/info")
 def getuser(request: Request):
