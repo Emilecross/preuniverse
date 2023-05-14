@@ -34,19 +34,41 @@ def get_database():
 get_database()
 
 def cleanQuery(query):
-    return json.loads(json_util.dumps(query))
-    
+    d = json.loads(json_util.dumps(query))
+    del d['_id']
+    return d
+
+@app.get("/mobile/classes")
+def getclasses(request: Request):
+    return {
+        [
+            {'name': 'YR9 Maths',
+            'timeStart': '9:00AM',
+            'timeEnd': '10:30AM',
+            'room': '102',
+            },
+            {'name': 'YR9 Science',
+            'timeStart': '10:40AM',
+            'timeEnd': '12:10AM',
+            'room': '105',
+            },
+            {'name': 'YR9 English',
+            'timeStart': '12:30PM',
+            'timeEnd': '1:30PM',
+            'room': '107',
+            },
+        ]
+    }
 
 @app.get("/mobile/info")
 def getuser(request: Request):
 
-    token = request.headers.get('token')
-    print(token)
-    if not token or not re.match(r'^[a-f\d]{24}$', token):
-        # print('bad token')
-        raise HTTPException(status_code=401, detail='bad token')
-
-
+    # token = request.headers.get('token')
+    token = '645a2c83e33586fb354ab30b'
+    # print(token)
+    # if not token or not re.match(r'^[a-f\d]{24}$', token):
+    #     # print('bad token')
+    #     raise HTTPException(status_code=401, detail='bad token')
 
     # sample '645a2c83e33586fb354ab30b'
     query = table.find_one({'_id': ObjectId(token)})
@@ -59,11 +81,12 @@ def getuser(request: Request):
 @app.get("/mobile/bookings")
 def getbooking(request: Request):
 
-    token = request.headers.get('token')
-    print(token)
-    if not token or not re.match(r'^[a-f\d]{24}$', token):
-        # print('bad token')
-        raise HTTPException(status_code=401, detail='bad token')
+    # token = request.headers.get('token')
+    token = '645a2c83e33586fb354ab30b'
+    # print(token)
+    # if not token or not re.match(r'^[a-f\d]{24}$', token):
+    #     # print('bad token')
+    #     raise HTTPException(status_code=401, detail='bad token')
 
     # sample '645a2c83e33586fb354ab30b'
     query = table.find_one({'_id': ObjectId(token)})
@@ -72,7 +95,7 @@ def getbooking(request: Request):
         raise HTTPException(status_code=404, detail='no user found')
     
     # return the latest booking
-    return cleanQuery(query)['bookings'][0]
+    return cleanQuery(query)['bookings']
 
 class PostStudent(BaseModel):
     name: str
